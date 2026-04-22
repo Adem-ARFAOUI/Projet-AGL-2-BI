@@ -4,7 +4,7 @@
 
 ## 🌍 Project Overview
 
-**GlutenFree Platform** is an innovative web/mobile application designed to help people suffering from **Celiac Disease** easily find and order safe gluten-free meals.
+**SafeBite** is an innovative web/mobile application designed to help people suffering from **Celiac Disease** easily find and order safe gluten-free meals.
 
 People with this condition must strictly avoid gluten, which makes dining out and food selection difficult.  
 This platform bridges the gap between **restaurants and gluten-free consumers**, offering a safe, smart, and enjoyable food experience.
