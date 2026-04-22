@@ -26,11 +26,11 @@ Cette plateforme vise à connecter les **restaurants et les consommateurs sans g
 
 | Membre | Rôle Scrum | Fonctionnalité | Branche Git |
 |--------|------------|----------------|--------------|
-| Sirine Hafsia | Product Owner & Développeuse | Authentification & Inscription | `feature/authentification` |
+| Syrine Hafsia | Product Owner & Développeuse | Authentification & Inscription | `feature/authentification` |
 | Adem Arfaoui | Scrum Master & Développeur | Administration (gestion utilisateurs, validation restaurants, modération) | `adem/feature-admin` |
 | Imen Abed | Développeuse | Espace Visiteur (consultation plats & restaurants) | `feature/visiteur` |
 | Maram Ayari | Développeuse | Gestion Restaurant (menus, commandes) | `feature/restaurant-management` |
-| Ilyes Jridi | Développeur | Espace Client (commande, avis, recommandations) | `feature/client-space` |
+| Elyes Jridi | Développeur | Espace Client (commande, avis, recommandations) | `feature/client-space` |
 
 ---
 
