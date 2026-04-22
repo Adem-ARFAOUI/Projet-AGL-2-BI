@@ -32,7 +32,7 @@ This platform bridges the gap between **restaurants and gluten-free consumers**,
 | Membre | Rôle Scrum | Fonctionnalité | Branche Git |
 |--------|------------|----------------|--------------|
 | Sirine Hafsia | Product Owner & Developer | Authentification & Inscription | `feature/authentification` |
-| Adem Arfaoui |  Scrum Master & Developer | Administration (gestion utilisateurs, validation restaurants, modération) | `feature/admin-dashboard`|
+| Adem Arfaoui |  Scrum Master & Developer | Administration (gestion utilisateurs, validation restaurants, modération) | `adem/feature-admin`|
 | Imen Abed | Developer | Espace Visiteur (consultation plats & restaurants) | `feature/visiteur` |
 | Maram Ayari | Developer | Gestion Restaurant (menus, commandes) | `feature/restaurant-management` |
 | Ilyes Jridi | Developer | Espace Client (commande, avis, recommandations) | `feature/client-space` |
