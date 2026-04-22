@@ -2,173 +2,172 @@
 
 ---
 
-## 🌍 Project Overview
+## 🌍 Présentation du projet
 
-**SafeBite** is an innovative web/mobile application designed to help people suffering from **Celiac Disease** easily find and order safe gluten-free meals.
+**SafeBite** est une application web/mobile innovante conçue pour aider les personnes atteintes de la **maladie cœliaque** à trouver et commander facilement des repas sans gluten sûrs.
 
-People with this condition must strictly avoid gluten, which makes dining out and food selection difficult.  
-This platform bridges the gap between **restaurants and gluten-free consumers**, offering a safe, smart, and enjoyable food experience.
+Les personnes souffrant de cette maladie doivent éviter strictement le gluten, ce qui rend le choix des repas et les sorties au restaurant difficiles.
 
----
-
-## 💡 Key Idea
-
-✔ Find gluten-free dishes easily  
-✔ Discover certified restaurants  
-✔ Order meals safely  
-✔ Rate and review dishes  
-✔ Personalized recommendations  
+Cette plateforme vise à connecter les **restaurants et les consommateurs sans gluten**, en offrant une expérience alimentaire sûre, intelligente et agréable.
 
 ---
 
-## 👥 Team Members
+## 💡 Idée principale
+
+✔ Trouver facilement des plats sans gluten  
+✔ Découvrir des restaurants certifiés  
+✔ Commander des repas en toute sécurité  
+✔ Noter et commenter les plats  
+✔ Recevoir des recommandations personnalisées  
+
+---
+
+## 👥 Équipe du projet
 
 | Membre | Rôle Scrum | Fonctionnalité | Branche Git |
 |--------|------------|----------------|--------------|
-| Sirine Hafsia | Product Owner & Developer | Authentification & Inscription | `feature/authentification` |
-| Adem Arfaoui |  Scrum Master & Developer | Administration (gestion utilisateurs, validation restaurants, modération) | `adem/feature-admin`|
-| Imen Abed | Developer | Espace Visiteur (consultation plats & restaurants) | `feature/visiteur` |
-| Maram Ayari | Developer | Gestion Restaurant (menus, commandes) | `feature/restaurant-management` |
-| Ilyes Jridi | Developer | Espace Client (commande, avis, recommandations) | `feature/client-space` |
-
-
----
-
-# 🧩 Project Backlog
-
-## 🟧 EPIC 1 — Visitor Experience
-
-### 🧾 US1 – View Dishes
-- Create dishes database table  
-- Develop GET /plats API  
-- Build UI listing page  
-- Add category filters  
-- Test display functionality  
-
-### 🧾 US2 – Search Restaurants
-- Create restaurants table  
-- Develop search API  
-- Add search bar UI  
-- Filters (location / rating)  
-- Test search feature  
+| Sirine Hafsia | Product Owner & Développeuse | Authentification & Inscription | `feature/authentification` |
+| Adem Arfaoui | Scrum Master & Développeur | Administration (gestion utilisateurs, validation restaurants, modération) | `adem/feature-admin` |
+| Imen Abed | Développeuse | Espace Visiteur (consultation plats & restaurants) | `feature/visiteur` |
+| Maram Ayari | Développeuse | Gestion Restaurant (menus, commandes) | `feature/restaurant-management` |
+| Ilyes Jridi | Développeur | Espace Client (commande, avis, recommandations) | `feature/client-space` |
 
 ---
 
-## 🟩 EPIC 2 — Authentication
+# 🧩 Backlog du projet
 
-### 🧾 US3 – Register Client
-- Create users table  
-- Build registration API  
-- Frontend signup form  
-- Email uniqueness validation  
-- Confirmation message  
+## 🟧 EPIC 1 — Expérience Visiteur
 
-### 🧾 US4 – Login System
-- Login API implementation  
-- Email/password validation  
-- JWT session handling  
-- Redirect after login  
-- Authentication tests  
+### 🧾 US1 – Consulter les plats
+- Créer la table des plats en base de données  
+- Développer l’API GET /plats  
+- Créer l’interface de liste des plats  
+- Ajouter un filtre par catégorie  
+- Tester l’affichage des plats  
 
-### 🧾 US13 – Restaurant Registration
-- Restaurant table creation  
-- Registration form  
-- Pending status workflow  
-- Admin notification system  
+### 🧾 US2 – Rechercher des restaurants
+- Créer la table restaurants  
+- Développer l’API de recherche  
+- Ajouter une barre de recherche  
+- Ajouter des filtres (localisation / note)  
+- Tester la fonctionnalité de recherche  
 
 ---
 
-## 🟨 EPIC 3 — Client Features
+## 🟩 EPIC 2 — Authentification
 
-### 🧾 US5 – Order Meals
-- Orders table creation  
-- Cart system implementation  
-- Order API  
-- Checkout UI  
-- Confirmation screen  
+### 🧾 US3 – Créer un compte client
+- Créer la table utilisateurs  
+- Développer l’API d’inscription  
+- Créer le formulaire frontend  
+- Vérifier l’unicité de l’email  
+- Afficher un message de confirmation  
 
-### 🧾 US6 – Reviews & Ratings
-- Reviews table  
-- Rating API  
-- Star rating UI  
-- Display comments  
-- Testing  
+### 🧾 US4 – Connexion
+- Implémenter l’API de connexion  
+- Vérifier email et mot de passe  
+- Gérer les sessions (JWT)  
+- Redirection après connexion  
+- Tester l’authentification  
 
-### 🧾 US7 – Recommendations
-- Recommendation logic  
-- Collect user preferences  
-- Recommendation API  
-- Suggestion UI  
-- Testing system  
-
----
-
-## 🟧 EPIC 4 — Restaurant Panel
-
-### 🧾 US8 – Menu Management
-- CRUD dishes API  
-- Menu dashboard  
-- Image upload system  
-- Database integration  
-- Testing CRUD  
-
-### 🧾 US9 – Order Management
-- Orders retrieval API  
-- Orders dashboard  
-- Status update system  
-- Order history  
-- Workflow testing  
+### 🧾 US13 – Inscription restaurant
+- Créer la table restaurant  
+- Formulaire d’inscription restaurant  
+- Statut "en attente"  
+- Système de notification admin  
 
 ---
 
-## 🟥 EPIC 5 — Admin Panel
+## 🟨 EPIC 3 — Espace Client
 
-### 🧾 US10 – User Management
-- Users listing API  
-- Admin dashboard UI  
-- Suspend/delete users  
-- Security tests  
+### 🧾 US5 – Commander des plats
+- Créer la table commandes  
+- Implémenter le panier  
+- API de création de commande  
+- Interface de validation de commande  
+- Affichage de confirmation  
 
-### 🧾 US11 – Restaurant Validation
-- Pending restaurants API  
-- Accept/reject system  
-- Notification system  
-- Validation testing  
+### 🧾 US6 – Noter et commenter
+- Créer la table avis  
+- API d’ajout d’avis  
+- Interface de notation (étoiles)  
+- Affichage des commentaires  
+- Tests fonctionnels  
 
-### 🧾 US12 – Content Moderation
-- Report system  
-- Delete content API  
-- Admin moderation panel  
-- Action history log  
-
----
-
-# ⚙️ Tech Stack
-
-- Frontend: React / HTML / CSS / JS  
-- Backend: Node.js / Spring Boot / PHP (adaptable)  
-- Database: MySQL / PostgreSQL  
-- Authentication: JWT  
-- Tools: GitHub, Postman, Figma  
+### 🧾 US7 – Recommandations
+- Définir la logique de recommandation  
+- Collecter les préférences utilisateurs  
+- Développer l’API de recommandation  
+- Afficher les suggestions  
+- Tester le système  
 
 ---
 
-# 🚀 Goal of the Project
+## 🟧 EPIC 4 — Espace Restaurant
 
-To create a **real-world solution** that:
-- Improves the life of people with celiac disease  
-- Connects users with safe food options  
-- Supports restaurants in offering gluten-free menus  
-- Provides a smooth digital ordering experience  
+### 🧾 US8 – Gestion des menus
+- Créer la table plats  
+- API CRUD des plats  
+- Interface de gestion des menus  
+- Upload d’images  
+- Tester les opérations CRUD  
+
+### 🧾 US9 – Gestion des commandes
+- API de récupération des commandes  
+- Interface de liste des commandes  
+- Mise à jour du statut des commandes  
+- Historique des commandes  
+- Tester le workflow  
+
+---
+
+## 🟥 EPIC 5 — Administration
+
+### 🧾 US10 – Gestion des utilisateurs
+- API de liste des utilisateurs  
+- Interface admin  
+- Suspension / suppression utilisateur  
+- Tests de sécurité  
+
+### 🧾 US11 – Validation des restaurants
+- API des restaurants en attente  
+- Interface de validation  
+- Accepter / refuser les restaurants  
+- Système de notification  
+- Tests de validation  
+
+### 🧾 US12 – Modération du contenu
+- Système de signalement  
+- API de suppression de contenu  
+- Interface admin de modération  
+- Historique des actions  
+
+---
+
+# ⚙️ Stack technique
+
+- Frontend : React / HTML / CSS / JS  
+- Backend : Node.js / Spring Boot / PHP (adaptable)  
+- Base de données : MySQL / PostgreSQL  
+- Authentification : JWT  
+- Outils : GitHub, Postman, Figma  
+
+---
+
+# 🚀 Objectif du projet
+
+Créer une solution réelle permettant de :
+- Améliorer la vie des personnes atteintes de la maladie cœliaque  
+- Connecter les utilisateurs à des options alimentaires sûres  
+- Aider les restaurants à proposer des menus sans gluten  
+- Offrir une expérience de commande fluide et moderne  
 
 ---
 
 # 🧠 Conclusion
 
-This project combines **healthcare awareness + technology + food industry innovation** to solve a real problem in society.
+Ce projet combine **santé, technologie et innovation alimentaire** pour résoudre un problème réel de société.
 
 ---
 
-> 💙 Made with teamwork, innovation, and passion
-
-Deliver a complete platform that improves the daily life of people with celiac disease by ensuring safe, reliable, and enjoyable food experiences.
+> 💙 Développé avec travail d’équipe, innovation et passion
