@@ -1,11 +1,5 @@
 # 🥗 SafeBite
 
-![GitHub repo size](https://img.shields.io/github/repo-size/your-repo/glutenfree-platform)
-![GitHub last commit](https://img.shields.io/github/last-commit/your-repo/glutenfree-platform)
-![Status](https://img.shields.io/badge/status-in%20development-yellow)
-![License](https://img.shields.io/badge/license-academic-blue)
-![Tech](https://img.shields.io/badge/full--stack-web%20app-green)
-
 ---
 
 ## 🌍 Project Overview
