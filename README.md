@@ -146,9 +146,9 @@ Cette plateforme vise à connecter les **restaurants et les consommateurs sans g
 
 # ⚙️ Stack technique
 
-- Frontend : React / HTML / CSS / JS  
-- Backend : Node.js / Spring Boot / PHP (adaptable)  
-- Base de données : MySQL / PostgreSQL  
+- Frontend : HTML / CSS / JS  
+- Backend : Java Natif 
+- Base de données : MySQL 
 - Authentification : JWT  
 - Outils : GitHub, Postman, Figma  
 
