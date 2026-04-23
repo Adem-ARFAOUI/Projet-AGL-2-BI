@@ -167,6 +167,7 @@ Créer une solution réelle permettant de :
  - https://www.figma.com/make/xwd6k8vwUCOfglCTGzWRLG/SafeBite?t=If4A5h3hV60gOAvE-1 (Partie Admin)
  - https://www.figma.com/make/EOxM46z7AePXGQq43tyz1z/Cr%C3%A9er-maquettes-pour-fonctionnalit%C3%A9s?fullscreen=1&t=42obIaMxk9Q2gRYV-1&preview-route=%2Forder%2Fmenu (partie client)
  - https://www.figma.com/make/TS5rttoXQSaVxCaEIdWXZ3/Maquette-d-%C3%A9cran?t=6WEt2TLjZINftg8M-1 (Partie Visiteur)
+ -  https://www.figma.com/make/6INi9X7eL9QBDsEuwsKKAs/Cr%C3%A9er-maquettes-pour-fonctionnalit%C3%A9s?t=jbpXCWMAFHkYX4le-1&preview-route=%2Ffonctionnalite-1(partie restaurant)
 
  
 # 🧠 Conclusion
