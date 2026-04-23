@@ -167,11 +167,13 @@ Créer une solution réelle permettant de :
  - https://www.figma.com/make/xwd6k8vwUCOfglCTGzWRLG/SafeBite?t=If4A5h3hV60gOAvE-1 (Partie Admin)
  - https://www.figma.com/make/EOxM46z7AePXGQq43tyz1z/Cr%C3%A9er-maquettes-pour-fonctionnalit%C3%A9s?fullscreen=1&t=42obIaMxk9Q2gRYV-1&preview-route=%2Forder%2Fmenu (partie client)
  - https://www.figma.com/make/TS5rttoXQSaVxCaEIdWXZ3/Maquette-d-%C3%A9cran?t=6WEt2TLjZINftg8M-1 (Partie Visiteur)
- -  https://www.figma.com/make/6INi9X7eL9QBDsEuwsKKAs/Cr%C3%A9er-maquettes-pour-fonctionnalit%C3%A9s?t=jbpXCWMAFHkYX4le-1&preview-route=%2Ffonctionnalite-1 (partie restaurant)
-https://www.figma.com/make/a8j9eFgjFEl5hVdc5Po2ng/login-client?t=DLkWCv63uUsqL4mi-1( login client)
-https://www.figma.com/make/LzjuSwcjofRXvAG7Lfpq8A/login-restaurent?t=POSrF64wLeJJNKpM-1(login réstau)
-https://www.figma.com/make/U5cx9qP8NRwCH9K1m41Utm/cr%C3%A9ation-compte-client?t=9lrFKVCSA3N8Zlz2-1(création compte client)
-https://www.figma.com/make/Kxw14UnNR21L56s7p38SaC/cr%C3%A9ation-compte-r%C3%A9staurent?t=VDGdzvjVbeZhpnuv-1( création compte réstau)
+ - https://www.figma.com/make/6INi9X7eL9QBDsEuwsKKAs/Cr%C3%A9er-maquettes-pour-fonctionnalit%C3%A9s?t=jbpXCWMAFHkYX4le-1&preview-route=%2Ffonctionnalite-1 (partie restaurant)
+ - https://www.figma.com/make/a8j9eFgjFEl5hVdc5Po2ng/login-client?t=DLkWCv63uUsqL4mi-1 (login client)
+ - https://www.figma.com/make/LzjuSwcjofRXvAG7Lfpq8A/login-restaurent?t=POSrF64wLeJJNKpM-1 (login réstau)
+ - https://www.figma.com/make/U5cx9qP8NRwCH9K1m41Utm/cr%C3%A9ation-compte-client?t=9lrFKVCSA3N8Zlz2-1 (création compte client)
+ - https://www.figma.com/make/Kxw14UnNR21L56s7p38SaC/cr%C3%A9ation-compte-r%C3%A9staurent?t=VDGdzvjVbeZhpnuv-1 ( création compte réstau)
+
+---
 # 🧠 Conclusion
 
 Ce projet combine **santé, technologie et innovation alimentaire** pour résoudre un problème réel de société.
