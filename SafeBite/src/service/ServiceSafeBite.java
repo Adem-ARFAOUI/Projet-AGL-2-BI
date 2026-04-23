@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import model.Plat;
+import model.Restaurant;
+
 
 /**
  * Logique métier pour les plats et les restaurants (SAF-21, SAF-23, SAF-26, SAF-28).

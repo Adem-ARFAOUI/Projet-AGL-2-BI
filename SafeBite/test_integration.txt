@@ -1,0 +1,30 @@
+TEST INTEGRATION SAFEBITE
+========================
+
+Scénario de test :
+1. Module Authentification > Inscription restaurant
+   - Nom: "Le Gourmet"
+   - Adresse: "123 Rue de Paris"
+   - Email: "legourmet@resto.com"
+   - Téléphone: "71111111"
+   - Mot de passe: "resto123"
+
+2. Module Authentification > Créer compte client
+   - Nom: "Jridi"
+   - Prénom: "Ilyes"
+   - Email: "ilyes@test.com"
+   - Mot de passe: "client123"
+
+3. Module Admin > Valider restaurants
+   - Devrait voir "Le Gourmet" en attente
+   - Valider ou refuser
+
+4. Module Admin > Gérer utilisateurs
+   - Devrait voir "Ilyes Jridi" dans la liste
+   - Pouvoir suspendre ou supprimer
+
+Résultat attendu :
+✅ Les restaurants enregistrés apparaissent dans AdminService.pendingRestaurants
+✅ Les clients enregistrés apparaissent dans AdminService.users
+✅ L'admin peut valider/refuser les restaurants
+✅ L'admin peut gérer (suspendre/supprimer) les utilisateurs

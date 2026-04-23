@@ -1,0 +1,403 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    LISTE COMPLÈTE DES MODIFICATIONS
+═══════════════════════════════════════════════════════════════════════════════
+
+
+📝 FICHIERS MODIFIÉS: 5
+
+1️⃣ src/model/FormulaireRestaurant.java
+2️⃣ src/model/FormulaireCompte.java
+3️⃣ src/model/AuthService.java
+4️⃣ src/model/TestAuthentification.java
+5️⃣ src/main/Main.java
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+1️⃣ FormulaireRestaurant.java
+─────────────────────────────
+
+CHANGEMENT: Ajouter AdminService pour enregistrer les demandes
+
+AVANT:
+┌────────────────────────────────────┐
+│ public FormulaireRestaurant(        │
+│   RestaurantService service)        │
+│ {                                  │
+│   this.service = service;          │
+│ }                                  │
+└────────────────────────────────────┘
+
+APRÈS:
+┌────────────────────────────────────┐
+│ import service.AdminService;       │
+│                                    │
+│ public FormulaireRestaurant(        │
+│   RestaurantService service,       │
+│   AdminService adminService)       │
+│ {                                  │
+│   this.service = service;          │
+│   this.adminService = adminService;│
+│ }                                  │
+└────────────────────────────────────┘
+
+
+DANS MÉTHODE afficherFormulaire():
+
+AVANT:
+┌────────────────────────────────────┐
+│ if (succes) {                      │
+│   System.out.println("✅ Demande...");
+│   notifierAdmin(nom, email);       │
+│ }                                  │
+└────────────────────────────────────┘
+
+APRÈS:
+┌────────────────────────────────────┐
+│ if (succes) {                      │
+│   System.out.println("✅ Demande...");
+│                                    │
+│   // Ajouter dans AdminService     │
+│   if (adminService != null) {      │
+│     for (Restaurant r : service... │
+│       if (r.getEmail().equals...) {│
+│         adminService.add...(r);    │
+│         break;                     │
+│       }                            │
+│     }                              │
+│   }                                │
+│                                    │
+│   notifierAdmin(nom, email);       │
+│ }                                  │
+└────────────────────────────────────┘
+
+📌 IMPACT: Les demandes de restaurant enregistrées dans AdminService
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+2️⃣ FormulaireCompte.java
+───────────────────────
+
+CHANGEMENT: Ajouter AdminService pour enregistrer les clients
+
+AVANT:
+┌────────────────────────────────────┐
+│ public FormulaireCompte(            │
+│   CompteService service)           │
+│ {                                  │
+│   this.service = service;          │
+│ }                                  │
+└────────────────────────────────────┘
+
+APRÈS:
+┌────────────────────────────────────┐
+│ import service.AdminService;       │
+│                                    │
+│ public FormulaireCompte(            │
+│   CompteService service,           │
+│   AdminService adminService)       │
+│ {                                  │
+│   this.service = service;          │
+│   this.adminService = adminService;│
+│ }                                  │
+└────────────────────────────────────┘
+
+
+DANS MÉTHODE afficherFormulaire():
+
+AVANT:
+┌────────────────────────────────────┐
+│ if (succes) {                      │
+│   System.out.println("✅ Compte...");
+│ }                                  │
+└────────────────────────────────────┘
+
+APRÈS:
+┌────────────────────────────────────┐
+│ if (succes) {                      │
+│   System.out.println("✅ Compte...");
+│                                    │
+│   // Ajouter dans AdminService     │
+│   if (adminService != null) {      │
+│     for (Client c : service...) {  │
+│       if (c.getEmail().equals...) {│
+│         adminService.addUser(c);   │
+│         break;                     │
+│       }                            │
+│     }                              │
+│   }                                │
+│ }                                  │
+└────────────────────────────────────┘
+
+📌 IMPACT: Les clients enregistrés dans AdminService
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+3️⃣ AuthService.java
+──────────────────
+
+CHANGEMENT: Ajouter AdminService pour chercher les admins lors de connexion
+
+AVANT:
+┌────────────────────────────────────┐
+│ public AuthService(                │
+│   CompteService compteService,     │
+│   RestaurantService restaurantServ)│
+│ {                                  │
+│   this.compteService = compteServ; │
+│   this.restaurantService = restServ
+│ }                                  │
+└────────────────────────────────────┘
+
+APRÈS:
+┌────────────────────────────────────┐
+│ import service.AdminService;       │
+│                                    │
+│ public AuthService(                │
+│   CompteService compteService,     │
+│   RestaurantService restaurantServ,│
+│   AdminService adminService)       │
+│ {                                  │
+│   this.compteService = compteServ; │
+│   this.restaurantService = restServ
+│   this.adminService = adminService;│
+│ }                                  │
+└────────────────────────────────────┘
+
+
+DANS MÉTHODE connecter():
+
+AVANT:
+┌────────────────────────────────────┐
+│ // Chercher dans clients           │
+│ for (Client u : clients) { ... }   │
+│                                    │
+│ // Chercher dans restaurants       │
+│ for (Restaurant r : restos) { ... }│
+└────────────────────────────────────┘
+
+APRÈS:
+┌────────────────────────────────────┐
+│ // Chercher dans clients           │
+│ for (Client u : clients) { ... }   │
+│                                    │
+│ // Chercher dans admins            │
+│ if (adminService != null) {        │
+│   for (Utilisateur u : adminServ..│
+│     if (u.getEmail().equals(...)) {│
+│       utilisateurConnecte = u;     │
+│       return true;                 │
+│     }                              │
+│   }                                │
+│ }                                  │
+│                                    │
+│ // Chercher dans restaurants       │
+│ for (Restaurant r : restos) { ... }│
+└────────────────────────────────────┘
+
+📌 IMPACT: Les admins peuvent maintenant se connecter
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+4️⃣ TestAuthentification.java
+─────────────────────────────
+
+CHANGEMENT: Passer AdminService pour tester l'authentification des admins
+
+AVANT:
+┌────────────────────────────────────┐
+│ public static void tester(         │
+│   CompteService compteService,     │
+│   RestaurantService restaurantServ)│
+│ {                                  │
+│   AuthService auth = new Auth...(  │
+│     compteService, restaurantServ);│
+│ }                                  │
+└────────────────────────────────────┘
+
+APRÈS:
+┌────────────────────────────────────┐
+│ import service.AdminService;       │
+│                                    │
+│ public static void tester(         │
+│   CompteService compteService,     │
+│   RestaurantService restaurantServ,│
+│   AdminService adminService)       │
+│ {                                  │
+│   AuthService auth = new Auth...(  │
+│     compteService, restaurantServ, │
+│     adminService);                 │
+│ }                                  │
+└────────────────────────────────────┘
+
+📌 IMPACT: Les tests incluent les admins
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+5️⃣ Main.java
+────────────
+
+CHANGEMENT 1: Réordonner l'initialisation des services
+
+AVANT:
+┌────────────────────────────────────┐
+│ compteService = new CompteService()
+│ restaurantService = new RestServ()
+│ authService = new AuthService(     │
+│   compteService, restaurantService)
+│ adminService = new AdminService()  │
+│ adminUI = new AdminUI(adminService)
+└────────────────────────────────────┘
+
+APRÈS:
+┌────────────────────────────────────┐
+│ compteService = new CompteService()
+│ restaurantService = new RestServ()
+│ adminService = new AdminService()  │ ← AVANT authService
+│ authService = new AuthService(     │
+│   compteService, restaurantService,│
+│   adminService)                    │
+│ adminUI = new AdminUI(adminService)
+└────────────────────────────────────┘
+
+📌 IMPACT: AdminService existe avant d'être utilisé dans AuthService
+
+
+CHANGEMENT 2: Passer AdminService aux formulaires
+
+AVANT:
+┌────────────────────────────────────┐
+│ new FormulaireCompte(compteService)
+│ new FormulaireRestaurant(          │
+│   restaurantService)               │
+└────────────────────────────────────┘
+
+APRÈS:
+┌────────────────────────────────────┐
+│ new FormulaireCompte(              │
+│   compteService, adminService)     │
+│ new FormulaireRestaurant(          │
+│   restaurantService, adminService) │
+└────────────────────────────────────┘
+
+📌 IMPACT: Les formulaires peuvent enregistrer dans AdminService
+
+
+CHANGEMENT 3: Ajouter client préchargé dans AdminService
+
+AVANT:
+┌────────────────────────────────────┐
+│ compteService.inscrireUtilisateur( │
+│   "Ben Ali", "Sonia", ...)         │
+│ // Client créé mais pas dans admin │
+└────────────────────────────────────┘
+
+APRÈS:
+┌────────────────────────────────────┐
+│ compteService.inscrireUtilisateur( │
+│   "Ben Ali", "Sonia", ...)         │
+│ // Ajouter client préchargé        │
+│ for (Client c : compteService...) {│
+│   if (c.getEmail().equals(...)) {  │
+│     adminService.addUser(c);       │
+│     break;                         │
+│   }                                │
+│ }                                  │
+└────────────────────────────────────┘
+
+📌 IMPACT: Client préchargé visible dans admin dès le démarrage
+
+
+CHANGEMENT 4: Passer AdminService au test
+
+AVANT:
+┌────────────────────────────────────┐
+│ TestAuthentification.tester(        │
+│   compteService, restaurantService)│
+└────────────────────────────────────┘
+
+APRÈS:
+┌────────────────────────────────────┐
+│ TestAuthentification.tester(        │
+│   compteService, restaurantService,│
+│   adminService)                    │
+└────────────────────────────────────┘
+
+📌 IMPACT: Tests incluent AdminService
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 RÉSUMÉ DES CHANGEMENTS
+
+┌──────────────────────────────────────────┬────────────┐
+│ Type de Changement                       │ Fichiers   │
+├──────────────────────────────────────────┼────────────┤
+│ Ajouter AdminService en constructeur     │ 4 fichiers │
+│ Ajouter AdminService.add*() calls        │ 2 fichiers │
+│ Réordonner initialisation services       │ 1 fichier  │
+│ Ajouter recherche admins dans Auth       │ 1 fichier  │
+│ Ajouter données préchargées admin        │ 1 fichier  │
+└──────────────────────────────────────────┴────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔍 COMPATIBILITÉ ARRIÈRE
+
+✅ Tous les getters/setters préservés
+✅ Tous les interfaces de service inchangées (nouvelles méthodes uniquement)
+✅ Hiérarchie d'héritage respektée (Admin, Client, Restaurateur héritent d'User)
+✅ Format des messages d'erreur/succès inchangé
+✅ Logique métier existante préservée
+✅ Nouvelles fonctionnalités ajoutées sans casser existantes
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+⚙️ DÉPENDANCES ENTRE FICHIERS MODIFIÉS
+
+Main.java
+    ├── initialise CompteService
+    ├── initialise RestaurantService
+    ├── initialise AdminService
+    │   └── utilisé par:
+    │       ├── FormulaireRestaurant
+    │       ├── FormulaireCompte
+    │       ├── AuthService
+    │       └── AdminUI
+    ├── initialise AuthService
+    └── initialise TestAuthentification
+
+FormulaireRestaurant --uses--> AdminService
+FormulaireCompte ------uses--> AdminService
+AuthService -----------uses--> AdminService
+TestAuthentification --uses--> AdminService
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ CHECKLIST DE MODIFICATION
+
+[✅] FormulaireRestaurant accepte AdminService
+[✅] FormulaireRestaurant appelle adminService.addRestaurant()
+[✅] FormulaireCompte accepte AdminService
+[✅] FormulaireCompte appelle adminService.addUser()
+[✅] AuthService accepte AdminService
+[✅] AuthService cherche admins dans connecter()
+[✅] TestAuthentification accepte AdminService
+[✅] Main réordonne services (AdminService avant AuthService)
+[✅] Main passe AdminService aux formulaires
+[✅] Main passe AdminService à AuthService
+[✅] Main ajoute client préchargé dans AdminService
+[✅] Main passe AdminService à TestAuthentification
+[✅] Compilation réussit sans erreurs
+[✅] Aucun fichier supprimé
+[✅] Aucune classe existante supprimée
+
+
+═══════════════════════════════════════════════════════════════════════════════

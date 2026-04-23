@@ -1,0 +1,318 @@
+═══════════════════════════════════════════════════════════════════════════════
+   FLOW COMPLET DE DONNÉES DANS AdminService
+═══════════════════════════════════════════════════════════════════════════════
+
+
+📍 INITIALISATION (Main.java)
+─────────────────────────────
+
+AdminService adminService = new AdminService();
+
+    ├─ pendingRestaurants = ArrayList[]
+    │   └─ Contient: Restaurant("Bistro Test", ...)
+    │
+    └─ users = ArrayList[]
+        ├─ Contient: Admin("Admin", "Principal", ...)
+        └─ Contient: Client("Ben Ali", "Sonia", ...)  [préchargé]
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📥 FLUX 1: RESTAURANT S'INSCRIT
+─────────────────────────────
+
+ÉTAPE 1: Restaurant remplit FormulaireRestaurant
+┌─────────────────────────────────┐
+│ afficherFormulaire()            │
+│                                 │
+│ Nom         : "La Pizzeria"    │
+│ Email       : "pizza@resto.com"│
+│ Mot de passe: "pizza123"       │
+└─────────────────────────────────┘
+         ↓
+ÉTAPE 2: FormulaireRestaurant enregistre dans RestaurantService
+┌──────────────────────────────────────────────────┐
+│ RestaurantService.inscrireRestaurant(...)        │
+│                                                  │
+│ restaurants.add(new Restaurant(                  │
+│   "La Pizzeria", ..., "pizza@resto.com", ...))  │
+│                                                  │
+│ return true ✅                                   │
+└──────────────────────────────────────────────────┘
+         ↓
+ÉTAPE 3: FormulaireRestaurant enregistre dans AdminService
+┌─────────────────────────────────────────────────┐
+│ for (Restaurant r : restaurantService.get()) {  │
+│   if (r.getEmail().equals(email)) {             │
+│     adminService.addRestaurant(r) ← CLÉS       │
+│     break                                       │
+│   }                                             │
+│ }                                               │
+└─────────────────────────────────────────────────┘
+         ↓
+ÉTAPE 4: AdminService ajoute à pendingRestaurants
+┌────────────────────────────────────┐
+│ AdminService.addRestaurant(r)       │
+│                                    │
+│ pendingRestaurants.add(r)          │
+│                                    │
+│ État maintenant:                   │
+│ ├─ Bistro Test (en attente)        │
+│ └─ La Pizzeria (en attente) ← NEW  │
+└────────────────────────────────────┘
+         ↓
+✅ Restaurant enregistré et en attente de validation
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📥 FLUX 2: CLIENT S'INSCRIT
+──────────────────────────
+
+ÉTAPE 1: Client remplit FormulaireCompte
+┌─────────────────────────────────┐
+│ afficherFormulaire()            │
+│                                 │
+│ Nom         : "Dupont"         │
+│ Prénom      : "Marie"          │
+│ Email       : "marie@test.com" │
+│ Mot de passe: "marie123"       │
+└─────────────────────────────────┘
+         ↓
+ÉTAPE 2: FormulaireCompte enregistre dans CompteService
+┌──────────────────────────────────────────────────┐
+│ CompteService.inscrireUtilisateur(...)           │
+│                                                  │
+│ utilisateurs.add(new Client(                     │
+│   "Dupont", "Marie", "marie@test.com", ...))     │
+│                                                  │
+│ return true ✅                                   │
+└──────────────────────────────────────────────────┘
+         ↓
+ÉTAPE 3: FormulaireCompte enregistre dans AdminService
+┌──────────────────────────────────────────────────┐
+│ for (Client c : compteService.get()) {           │
+│   if (c.getEmail().equals(email)) {              │
+│     adminService.addUser(c) ← CLÉS              │
+│     break                                        │
+│   }                                              │
+│ }                                                │
+└──────────────────────────────────────────────────┘
+         ↓
+ÉTAPE 4: AdminService ajoute à users
+┌────────────────────────────────────┐
+│ AdminService.addUser(c)             │
+│                                    │
+│ users.add(c)                       │
+│                                    │
+│ État maintenant:                   │
+│ ├─ Admin Principal (SUPER_ADMIN)   │
+│ ├─ Sonia Ben Ali (CLIENT)          │
+│ └─ Marie Dupont (CLIENT) ← NEW      │
+└────────────────────────────────────┘
+         ↓
+✅ Client enregistré et visible dans admin
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+👁️ FLUX 3: ADMIN VALIDE RESTAURANT
+──────────────────────────────
+
+ÉTAPE 1: Admin accède à AdminUI.showRestaurantValidation()
+┌────────────────────────────────────────────┐
+│ List<Restaurant> list = service.            │
+│   getPendingRestaurants()                   │
+│                                             │
+│ Affiche:                                    │
+│ 0 - Bistro Test                             │
+│ 1 - La Pizzeria                             │
+│                                             │
+│ Choisir index: 1                            │
+│ Action (1=Accepter, 2=Refuser): 1           │
+└────────────────────────────────────────────┘
+         ↓
+ÉTAPE 2: AdminUI appelle AdminService.approveRestaurant()
+┌────────────────────────────────────────────┐
+│ service.approveRestaurant(list.get(1))     │
+└────────────────────────────────────────────┘
+         ↓
+ÉTAPE 3: AdminService approuve
+┌───────────────────────────────────────────┐
+│ AdminService.approveRestaurant(r)          │
+│                                           │
+│ r.setValidated(true)                      │
+│ r.setStatut("approuvé")                   │
+│ pendingRestaurants.remove(r)              │
+│ sendNotification(r, "Restaurant validé")  │
+└───────────────────────────────────────────┘
+         ↓
+ÉTAPE 4: AdminService après validation
+┌────────────────────────────────────────────┐
+│ pendingRestaurants:                         │
+│ ├─ Bistro Test (en attente)                │
+│ └─ [La Pizzeria supprimée de la liste]     │
+│                                             │
+│ Note: La Pizzeria est maintenant approuvée │
+│ et peut se connecter si elle essaie        │
+└────────────────────────────────────────────┘
+         ↓
+✅ Restaurant approuvé!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔒 FLUX 4: ADMIN GÈRE CLIENT
+──────────────────────────
+
+ÉTAPE 1: Admin accède à AdminUI.showUserManagement()
+┌────────────────────────────────────────────┐
+│ List<Utilisateur> users = service.getUsers()
+│                                             │
+│ Affiche:                                    │
+│ 0 - Admin Principal                         │
+│ 1 - Sonia Ben Ali                           │
+│ 2 - Marie Dupont                            │
+│                                             │
+│ Choisir index: 2                            │
+│ Action (1=Suspendre, 2=Supprimer): 1       │
+└────────────────────────────────────────────┘
+         ↓
+ÉTAPE 2: AdminUI appelle AdminService.suspendUser()
+┌────────────────────────────────────────────┐
+│ service.suspendUser(users.get(2))          │
+└────────────────────────────────────────────┘
+         ↓
+ÉTAPE 3: AdminService suspend
+┌────────────────────────────────────────────┐
+│ AdminService.suspendUser(u)                 │
+│                                             │
+│ u.suspend()  ← appelle Utilisateur.suspend()
+│ PrintMessage: "Utilisateur suspendu"       │
+└────────────────────────────────────────────┘
+         ↓
+ÉTAPE 4: AdminService après suspension
+┌────────────────────────────────────────────┐
+│ users:                                      │
+│ ├─ Admin Principal                          │
+│ ├─ Sonia Ben Ali                            │
+│ └─ Marie Dupont (suspendu=true) ← MARKED    │
+│                                             │
+│ Marie ne peut plus se connecter            │
+│ car isSuspendu() retourne true             │
+└────────────────────────────────────────────┘
+         ↓
+✅ Client suspendu!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔐 FLUX 5: AUTHENTIFICATION VIA AdminService
+───────────────────────────────────────────
+
+ÉTAPE 1: Utilisateur se connecte
+┌────────────────────────────────────────────┐
+│ Email       : admin@safebite.com           │
+│ Mot de passe: admin123                     │
+└────────────────────────────────────────────┘
+         ↓
+ÉTAPE 2: AuthService.connecter()
+┌────────────────────────────────────────────┐
+│ Cherche dans CompteService.clients()       │
+│ ❌ Pas trouvé                               │
+│                                             │
+│ Cherche dans AdminService.users()          │
+│ ✅ Trouvé Admin!                            │
+│                                             │
+│ utilisateurConnecte = admin                │
+│ return true                                │
+└────────────────────────────────────────────┘
+         ↓
+ÉTAPE 3: FormulaireLogin redirige
+┌────────────────────────────────────────────┐
+│ if (connecte instanceof Admin) {            │
+│   Print "Bienvenue Admin Principal"        │
+│   Print "Redirection: Tableau de bord Admin"
+│ }                                          │
+└────────────────────────────────────────────┘
+         ↓
+✅ Admin authentifié et redirigé!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 ÉTAT FINAL DE AdminService APRÈS TOUS LES FLUX
+
+AdminService {
+  
+  pendingRestaurants = [
+    Restaurant {
+      nom = "Bistro Test"
+      statut = "en attente"
+      validated = false
+    }
+    // La Pizzeria a été supprimée de cette liste après validation
+  ]
+  
+  users = [
+    Admin {
+      nom = "Admin"
+      prenom = "Principal"
+      email = "admin@safebite.com"
+      suspendu = false
+      niveauAcces = "SUPER_ADMIN"
+    }
+    
+    Client {
+      nom = "Ben Ali"
+      prenom = "Sonia"
+      email = "sonia@test.com"
+      suspendu = false
+    }
+    
+    Client {
+      nom = "Dupont"
+      prenom = "Marie"
+      email = "marie@test.com"
+      suspendu = true  ← Marqué comme suspendu
+    }
+  ]
+}
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔄 INTERACTIONS CLÉS
+
+1. RestaurantService.inscrireRestaurant() → AdminService.addRestaurant()
+   ├─ Synchronisation: Chaque nouveau restaurant va dans la file d'attente
+   └─ Pas de doublon: addRestaurant() ajoute simplement à la liste
+
+2. CompteService.inscrireUtilisateur() → AdminService.addUser()
+   ├─ Synchronisation: Chaque nouveau client est visible à l'admin
+   └─ Pas de doublon: addUser() ajoute simplement à la liste
+
+3. AuthService → AdminService.getUsers()
+   ├─ Recherche: connecter() cherche les admins dans users
+   └─ Validation: Vérifie email et mot de passe
+
+4. AdminUI → AdminService methods
+   ├─ Affichage: showRestaurantValidation() / showUserManagement()
+   ├─ Actions: approveRestaurant() / rejectRestaurant()
+   └─ Gestion: suspendUser() / deleteUser()
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ GARANTIES DE FONCTIONNEMENT
+
+✓ Une seule instance AdminService (partagée)
+✓ Pas de duplication de données
+✓ Flux unidirectionnels (inscription → admin)
+✓ Admin voit uniquement ses données via AdminService
+✓ Suppression de pendingRestaurants après validation
+✓ Tous les utilisateurs gérables centralement
+✓ Authentification authentifie à partir de AdminService
+
+
+═══════════════════════════════════════════════════════════════════════════════
