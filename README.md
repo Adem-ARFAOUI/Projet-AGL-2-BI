@@ -165,6 +165,7 @@ Créer une solution réelle permettant de :
 ---
 # Les liens des maquettes UI : 
  - https://www.figma.com/make/xwd6k8vwUCOfglCTGzWRLG/SafeBite?t=If4A5h3hV60gOAvE-1 (Partie Admin)
+ - https://www.figma.com/make/6INi9X7eL9QBDsEuwsKKAs/Cr%C3%A9er-maquettes-pour-fonctionnalit%C3%A9s?t=ok0CSZjtIXeY11r6-1&preview-route=%2Ffonctionnalite-1 (partie client)
 
  
 # 🧠 Conclusion
