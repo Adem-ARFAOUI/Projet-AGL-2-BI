@@ -163,7 +163,8 @@ Créer une solution réelle permettant de :
 - Offrir une expérience de commande fluide et moderne  
 
 ---
-
+# Les liens des maquettes UI : 
+ -
 # 🧠 Conclusion
 
 Ce projet combine **santé, technologie et innovation alimentaire** pour résoudre un problème réel de société.
