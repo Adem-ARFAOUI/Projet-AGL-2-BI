@@ -164,7 +164,9 @@ Créer une solution réelle permettant de :
 
 ---
 # Les liens des maquettes UI : 
- -
+ - https://www.figma.com/make/xwd6k8vwUCOfglCTGzWRLG/SafeBite?t=If4A5h3hV60gOAvE-1 (Partie Admin)
+
+ 
 # 🧠 Conclusion
 
 Ce projet combine **santé, technologie et innovation alimentaire** pour résoudre un problème réel de société.
