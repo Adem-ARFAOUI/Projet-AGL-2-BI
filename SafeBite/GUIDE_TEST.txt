@@ -1,0 +1,388 @@
+═══════════════════════════════════════════════════════════════════════════════
+                      GUIDE DE TEST INTERACTIF SAFEBITE
+═══════════════════════════════════════════════════════════════════════════════
+
+
+🚀 DÉMARRAGE
+────────────
+
+1. Ouvrir Terminal PowerShell
+2. Naviguer au projet:
+   cd "c:\Users\adema\OneDrive\Bureau\SafeBite\SafeBite"
+
+3. Compiler:
+   javac -d out -sourcepath src src/main/Main.java
+
+4. Exécuter:
+   java -cp out main.Main
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🧪 TEST 1: RESTAURANT S'INSCRIT + ADMIN VALIDE
+───────────────────────────────────────────────
+
+⏱️ DURÉE: ~2 min
+📝 ACTIONS: 4 étapes
+
+
+ÉTAPE 1: Inscription Restaurant
+┌─────────────────────────────────────────────────┐
+│ Menu Principal                                  │
+│ Choix: 1  (Authentification)                   │
+│                                                 │
+│ Module Authentification                         │
+│ Choix: 2  (Inscription restaurant)              │
+│                                                 │
+│ Remplir formulaire:                             │
+│   Nom du restaurant: "La Trattoria"             │
+│   Adresse: "45 Rue de Milan"                   │
+│   Email: "trattoria@resto.com"                 │
+│   Téléphone: "71888888"                        │
+│   Mot de passe: "trattoria123"                 │
+│                                                 │
+│ ✅ Attendu:                                     │
+│    "Demande d'inscription envoyée avec succès!"│
+│    "Votre compte est actuellement : EN ATTENTE"│
+└─────────────────────────────────────────────────┘
+
+
+ÉTAPE 2: Retour au Menu Principal
+┌─────────────────────────────────────────────────┐
+│ (Appuyer sur Entrée pour revenir)               │
+│                                                 │
+│ Affichage du menu principal                     │
+└─────────────────────────────────────────────────┘
+
+
+ÉTAPE 3: Admin Accède à Validation
+┌─────────────────────────────────────────────────┐
+│ Menu Principal                                  │
+│ Choix: 5  (Admin)                               │
+│                                                 │
+│ Module Admin                                    │
+│ Choix: 1  (Valider/Refuser restaurants)         │
+│                                                 │
+│ ✅ Attendu voir:                                │
+│    === Restaurants en attente ===               │
+│    0 - Bistro Test                              │
+│    1 - La Trattoria                             │
+│                                                 │
+│    Choisir index: 1                             │
+│    Action (1-Accepter / 2-Refuser): 1           │
+│                                                 │
+│ ✅ Attendu:                                     │
+│    Notification: "Restaurant validé ✅"        │
+└─────────────────────────────────────────────────┘
+
+
+ÉTAPE 4: Vérification (Optionnel)
+┌─────────────────────────────────────────────────┐
+│ Refaire l'étape 3                               │
+│                                                 │
+│ ✅ Attendu:                                     │
+│    La Trattoria ne doit plus être en attente   │
+│    (elle a été retirée de la liste)             │
+└─────────────────────────────────────────────────┘
+
+
+✅ TEST 1 RÉUSSI SI: Restaurant visible en attente, puis approuvé
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🧪 TEST 2: CLIENT S'INSCRIT + ADMIN GÈRE
+──────────────────────────────────────────
+
+⏱️ DURÉE: ~2 min
+📝 ACTIONS: 4 étapes
+
+
+ÉTAPE 1: Création Compte Client
+┌─────────────────────────────────────────────────┐
+│ Menu Principal                                  │
+│ Choix: 1  (Authentification)                   │
+│                                                 │
+│ Module Authentification                         │
+│ Choix: 1  (Créer un compte client)              │
+│                                                 │
+│ Remplir formulaire:                             │
+│   Nom: "Martin"                                 │
+│   Prénom: "Jean"                                │
+│   Email: "jean.martin@test.com"                 │
+│   Mot de passe: "martin123"                     │
+│                                                 │
+│ ✅ Attendu:                                     │
+│    "Compte créé avec succès!"                   │
+│    "Bienvenue sur SafeBite, Jean Martin!"       │
+└─────────────────────────────────────────────────┘
+
+
+ÉTAPE 2: Retour au Menu Principal
+┌─────────────────────────────────────────────────┐
+│ (Appuyer sur Entrée pour revenir)               │
+│                                                 │
+│ Menu Principal affiché                         │
+└─────────────────────────────────────────────────┘
+
+
+ÉTAPE 3: Admin Gère Utilisateurs
+┌─────────────────────────────────────────────────┐
+│ Menu Principal                                  │
+│ Choix: 5  (Admin)                               │
+│                                                 │
+│ Module Admin                                    │
+│ Choix: 2  (Gérer utilisateurs)                  │
+│                                                 │
+│ ✅ Attendu voir:                                │
+│    === Liste utilisateurs ===                   │
+│    0 - Admin Principal                          │
+│    1 - Sonia Ben Ali                            │
+│    2 - Jean Martin                              │
+│                                                 │
+│    Choisir index: 2                             │
+│    Action (1-Suspendre / 2-Supprimer): 1       │
+│                                                 │
+│ ✅ Attendu:                                     │
+│    "Utilisateur suspendu: Jean Martin"         │
+└─────────────────────────────────────────────────┘
+
+
+ÉTAPE 4: Vérification (Optionnel)
+┌─────────────────────────────────────────────────┐
+│ Essayer de connecter Jean Martin                │
+│                                                 │
+│ Menu Principal > 1 > 3                          │
+│ Email: jean.martin@test.com                     │
+│ Mot de passe: martin123                         │
+│                                                 │
+│ ✅ Attendu:                                     │
+│    Connexion échoue (utilisateur suspendu)      │
+│    Message: "❌ Email ou mot de passe incorrect"│
+└─────────────────────────────────────────────────┘
+
+
+✅ TEST 2 RÉUSSI SI: Client créé, puis suspendu, ne peut plus se connecter
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🧪 TEST 3: AUTHENTIFICATION ADMIN
+─────────────────────────────────
+
+⏱️ DURÉE: ~1 min
+📝 ACTIONS: 1 étape
+
+
+ÉTAPE 1: Connexion Admin
+┌─────────────────────────────────────────────────┐
+│ Menu Principal                                  │
+│ Choix: 1  (Authentification)                   │
+│                                                 │
+│ Module Authentification                         │
+│ Choix: 3  (Se connecter)                        │
+│                                                 │
+│ Email: admin@safebite.com                       │
+│ Mot de passe: admin123                          │
+│                                                 │
+│ ✅ Attendu:                                     │
+│    "✅ Connexion réussie!"                      │
+│    "Bienvenue Principal Admin [SUPER_ADMIN]"   │
+│    "➡️  Redirection vers: Tableau de bord Admin"│
+└─────────────────────────────────────────────────┘
+
+
+✅ TEST 3 RÉUSSI SI: Admin se connecte avec succès
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🧪 TEST 4: AUTHENTIFICATION CLIENT
+────────────────────────────────────
+
+⏱️ DURÉE: ~1 min
+📝 ACTIONS: 1 étape
+
+
+ÉTAPE 1: Connexion Client Préchargé
+┌─────────────────────────────────────────────────┐
+│ Menu Principal                                  │
+│ Choix: 1  (Authentification)                   │
+│                                                 │
+│ Module Authentification                         │
+│ Choix: 3  (Se connecter)                        │
+│                                                 │
+│ Email: sonia@test.com                           │
+│ Mot de passe: 123456                            │
+│                                                 │
+│ ✅ Attendu:                                     │
+│    "✅ Connexion réussie!"                      │
+│    "Bienvenue Sonia Ben Ali"                    │
+│    "➡️  Redirection vers: Tableau de bord Client"
+└─────────────────────────────────────────────────┘
+
+
+✅ TEST 4 RÉUSSI SI: Client se connecte avec succès
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🧪 TEST 5: RESTAURANT APPROUVÉ PEUT SE CONNECTER
+──────────────────────────────────────────────────
+
+⏱️ DURÉE: ~3 min
+📝 ACTIONS: 5 étapes
+
+
+ÉTAPE 1: Inscrire Restaurant (voir Test 1, étape 1)
+┌─────────────────────────────────────────────────┐
+│ Nom: "Le Gourmet"                               │
+│ Email: "legourmet@resto.com"                    │
+│ Mot de passe: "gourmet123"                      │
+└─────────────────────────────────────────────────┘
+
+
+ÉTAPE 2: Essayer de se connecter AVANT approbation
+┌─────────────────────────────────────────────────┐
+│ Menu Principal > 1 > 3                          │
+│ Email: legourmet@resto.com                      │
+│ Mot de passe: gourmet123                        │
+│                                                 │
+│ ✅ Attendu:                                     │
+│    "⚠️ Votre compte restaurant est en attente"  │
+│    Connexion échoue                             │
+└─────────────────────────────────────────────────┘
+
+
+ÉTAPE 3: Admin Approuve le Restaurant (voir Test 1, étape 3)
+┌─────────────────────────────────────────────────┐
+│ Menu Principal > 5 > 1                          │
+│ Valider "Le Gourmet"                            │
+└─────────────────────────────────────────────────┘
+
+
+ÉTAPE 4: Essayer de se connecter APRÈS approbation
+┌─────────────────────────────────────────────────┐
+│ Menu Principal > 1 > 3                          │
+│ Email: legourmet@resto.com                      │
+│ Mot de passe: gourmet123                        │
+│                                                 │
+│ ✅ Attendu:                                     │
+│    "✅ Connexion réussie!"                      │
+│    "Bienvenue Le Gourmet"                       │
+│    "➡️  Redirection vers: Tableau de bord Resto"
+└─────────────────────────────────────────────────┘
+
+
+✅ TEST 5 RÉUSSI SI: Restaurant ne peut se connecter que si approuvé
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🧪 TEST 6: FLUX COMPLET (TOUS LES TESTS ENSEMBLE)
+────────────────────────────────────────────────────
+
+⏱️ DURÉE: ~5 min
+📝 ACTIONS: Tous les tests précédents
+
+
+ÉTAPES:
+1. ✅ Inscrire restaurant + Admin approuve
+2. ✅ Créer client + Admin suspend
+3. ✅ Admin se connecte
+4. ✅ Client se connecte
+5. ✅ Restaurant approuvé se connecte
+
+
+✅ TEST 6 RÉUSSI SI: Tous les flux fonctionnent ensemble
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 TABLEAU DE TEST RÉCAPITULATIF
+
+┌────┬────────────────────────────┬────────┬────────┬──────────────┐
+│ # │ Test                        │ Durée  │ Pré-req│ Résultat    │
+├────┼────────────────────────────┼────────┼────────┼──────────────┤
+│ 1 │ Restaurant s'inscrit+Admin  │ 2 min  │ Aucun  │ ✅ ou ❌    │
+│ 2 │ Client s'inscrit+Admin      │ 2 min  │ Aucun  │ ✅ ou ❌    │
+│ 3 │ Authentification Admin      │ 1 min  │ Aucun  │ ✅ ou ❌    │
+│ 4 │ Authentification Client     │ 1 min  │ Aucun  │ ✅ ou ❌    │
+│ 5 │ Restaurant approuvé se conn.│ 3 min  │ Test 1 │ ✅ ou ❌    │
+│ 6 │ Flux complet                │ 5 min  │ Tous   │ ✅ ou ❌    │
+└────┴────────────────────────────┴────────┴────────┴──────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔍 POINTS À VÉRIFIER
+
+Après chaque test, vérifier:
+
+✓ Messages d'erreur clairs
+✓ Pas d'exception Java
+✓ Interface reste responsive
+✓ Données cohérentes après chaque action
+✓ Admin voit les bonnes données
+✓ Les supprimés/approuvés disparaissent
+✓ Redirection vers le bon tableau de bord
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+⚠️ DÉPANNAGE
+
+│ Problème                    │ Solution                        │
+├─────────────────────────────┼────────────────────────────────┤
+│ App plante au démarrage     │ Recompiler: javac -d out ...   │
+│ Pas de restaurant en attente│ Test 1 étape 1: inscrire un    │
+│ Pas d'utilisateur en liste  │ Test 2 étape 1: créer un client│
+│ Connexion admin échoue      │ Vérifier email/pwd exacts      │
+│ Restaurant ne peut se conn. │ Doit être approuvé d'abord     │
+│ Données perdues             │ Normal (en mémoire)            │
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📝 NOTES IMPORTANTES
+
+1. DONNÉES EN MÉMOIRE
+   - Les données sont perdues à la fermeture
+   - Pas de persistance base de données
+   - Redémarrer = données réinitialisées
+
+2. PRÉCHARGÉES AU DÉMARRAGE
+   Client: Sonia Ben Ali (sonia@test.com / 123456)
+   Admin: Admin Principal (admin@safebite.com / admin123)
+   Restaurant: Le SafSaf (approuvé)
+   Restaurant: Bistro Test (en attente)
+
+3. ADMINS VISIBLES DANS ADMIN
+   - Les admins enregistrés dans AdminService.users
+   - Apparaissent dans "Gérer utilisateurs"
+   - Peuvent être suspendus/supprimés comme les clients
+
+4. REDIRECTION POST-CONNEXION
+   Admin → "Tableau de bord Admin"
+   Client → "Tableau de bord Client"
+   Restaurateur → "Tableau de bord Restaurateur"
+   Restaurant → "Tableau de bord Restaurant"
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ RÉSULTAT ATTENDU SI TOUT FONCTIONNE
+
+Après les 6 tests:
+✅ Restaurant s'inscrit et apparaît dans AdminService
+✅ Admin voit la demande en attente
+✅ Admin approuve/refuse
+✅ Client s'inscrit et apparaît dans AdminService
+✅ Admin gère les clients
+✅ Admin peut se connecter
+✅ Client peut se connecter
+✅ Restaurant approuvé peut se connecter
+
+🎉 INTÉGRATION COMPLÈTE RÉUSSIE!
+
+═══════════════════════════════════════════════════════════════════════════════
